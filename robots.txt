@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /menu-print.html
+Disallow: /menu-tv.html
+Disallow: /secret.html
+
+Sitemap: https://nellysgrillanddairybar.com/sitemap.xml

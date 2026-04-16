@@ -177,7 +177,7 @@
 
     <main>
         <section class="hero-banner hero-banner--inner">
-            <img src="images/food/lobster-roll.jpg" alt="Lobster roll at Nelly's" class="hero-banner-img">
+            <img id="specials-hero-img" src="images/food/nellys-lobster-roll.png" alt="Nelly's specials" class="hero-banner-img">
             <div class="hero-banner-overlay"></div>
             <div class="hero-banner-content">
                 <h1>Weekly Specials</h1>
@@ -214,7 +214,7 @@
                     <!-- Thursday - data-day="4" -->
                     <div class="special-card" data-day="4">
                         <span class="today-badge">Today's Special</span>
-                        <img src="images/food/nellys-fish-and-chips.png" alt="Fish and Chips" class="special-card-img">
+                        <img src="images/food/nellys-fish-and-chips-actual.png" alt="Fish and Chips at Nelly's" class="special-card-img">
                         <div class="special-card-body">
                             <div class="special-day">Thursday</div>
                             <div class="special-title">Fish and Chips Special</div>
@@ -229,7 +229,7 @@
                     <!-- Friday - data-day="5" -->
                     <div class="special-card" data-day="5">
                         <span class="today-badge">Today's Special</span>
-                        <img src="images/food/lobster-roll.jpg" alt="Lobster Roll" class="special-card-img">
+                        <img src="images/food/nellys-lobster-roll.png" alt="Lobster Roll at Nelly's" class="special-card-img">
                         <div class="special-card-body">
                             <div class="special-day">Friday</div>
                             <div class="special-title">Seafood Friday</div>
@@ -244,7 +244,7 @@
                     <!-- Saturday - data-day="6" -->
                     <div class="special-card" data-day="6">
                         <span class="today-badge">Today's Special</span>
-                        <img src="images/food/bucket of chicken.jpg" alt="Bucket of Chicken" class="special-card-img">
+                        <img src="images/logos/bucket of chicken.png" alt="Nelly's Fried Chicken Bucket" class="special-card-img">
                         <div class="special-card-body">
                             <div class="special-day">Saturday</div>
                             <div class="special-title">Family Bucket Day</div>
@@ -256,20 +256,6 @@
                         </div>
                     </div>
 
-                    <!-- Sunday - data-day="0" -->
-                    <div class="special-card" data-day="0">
-                        <span class="today-badge">Today's Special</span>
-                        <img src="images/food/nellys-daily-food-1.png" alt="Sunday Dinner at Nelly's" class="special-card-img">
-                        <div class="special-card-body">
-                            <div class="special-day">Sunday</div>
-                            <div class="special-title">Sunday Dinner</div>
-                            <div class="special-desc">Comfort food done right. Pan-fried haddock dinner or Southern fried chicken with all the fixings. The perfect Sunday treat.</div>
-                        </div>
-                        <div class="special-pricing">
-                            <div class="special-price">$23</div>
-                            <div class="special-price-note">Choice of protein</div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -312,6 +298,7 @@
             <div class="footer-right">
                 <div class="social-links">
                     <a href="https://www.facebook.com/nellysgrillanddairybar" target="_blank" class="social-link">FB</a>
+                    <a href="https://www.instagram.com/nellysgrillanddairybar/" target="_blank" class="social-link">IG</a>
                 </div>
                 <span class="footer-credit">Website by Justin Greeno</span>
             </div>
@@ -319,6 +306,7 @@
         <a href="secret.html" class="footer-secret" tabindex="-1">J</a>
         <a href="menu-print.html" class="footer-secret footer-secret--r2" tabindex="-1">P</a>
         <a href="menu-tv.html" class="footer-secret footer-secret--r1" tabindex="-1">T</a>
+        <a href="dairy-bar-menu.html" class="footer-secret footer-secret--r3" tabindex="-1">D</a>
     </footer>
 
     <script src="js/nellys-search.js"></script>
@@ -358,22 +346,23 @@
         // Today's / Next Special banner + highlight card
         (function() {
             var SPECIALS = {
-                4: { day: 'Thursday', title: 'Fish & Chips Special',  desc: 'Golden battered Atlantic haddock with hand-cut fries and creamy coleslaw. A Nova Scotia classic!' },
-                5: { day: 'Friday',   title: 'Seafood Friday',         desc: 'Lobster Roll with coleslaw, or our full Seafood Platter fresh from the Atlantic.' },
-                6: { day: 'Saturday', title: 'Family Bucket Day',      desc: "Nelly's Fried Chicken Bucket: 9 golden pieces with large fries, coleslaw, and gravy. Feed the whole family!" },
-                0: { day: 'Sunday',   title: 'Sunday Dinner',          desc: 'Pan-fried haddock or Southern fried chicken with all the fixings. The perfect Sunday treat.' }
+                4: { day: 'Thursday', title: 'Fish & Chips Special',  desc: 'Golden battered Atlantic haddock with hand-cut fries and creamy coleslaw. A Nova Scotia classic!', img: 'images/food/nellys-fish-and-chips-actual.png' },
+                5: { day: 'Friday',   title: 'Seafood Friday',         desc: 'Lobster Roll with coleslaw, or our full Seafood Platter fresh from the Atlantic.',                   img: 'images/food/nellys-lobster-roll.png' },
+                6: { day: 'Saturday', title: 'Family Bucket Day',      desc: "Nelly's Fried Chicken Bucket: 9 golden pieces with large fries, coleslaw, and gravy. Feed the whole family!", img: 'images/logos/bucket of chicken.png' }
             };
             function getNext(d) {
                 for (var i = 1; i <= 7; i++) { var x = (d + i) % 7; if (SPECIALS[x]) return { s: SPECIALS[x], away: i }; }
             }
             var today = new Date().getDay();
             var banner = document.getElementById('specials-banner');
+            var heroImg = document.getElementById('specials-hero-img');
             var spec = SPECIALS[today];
             if (spec) {
                 banner.style.display = '';
                 document.getElementById('specials-banner-badge').textContent = "Today's Special";
                 document.getElementById('specials-banner-title').textContent = spec.title;
                 document.getElementById('specials-banner-desc').textContent = spec.desc;
+                if (heroImg && spec.img) heroImg.src = spec.img;
             } else {
                 var n = getNext(today);
                 banner.style.display = '';

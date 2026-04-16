@@ -99,9 +99,10 @@
 
             <section class="panel text-center">
                 <h2>Follow Us for More</h2>
-                <p style="font-size: 1.1rem; color: var(--text-muted);">See the latest photos and specials on Facebook!</p>
-                <div class="mt-2">
-                    <a href="https://www.facebook.com/nellysgrillanddairybar" target="_blank" class="btn">Follow Us on Facebook</a>
+                <p style="font-size: 1.1rem; color: var(--text-muted);">See the latest photos and specials on Facebook and Instagram!</p>
+                <div class="mt-2" style="display:flex; flex-wrap:wrap; gap:0.75rem; justify-content:center;">
+                    <a href="https://www.facebook.com/nellysgrillanddairybar" target="_blank" class="btn">Facebook</a>
+                    <a href="https://www.instagram.com/nellysgrillanddairybar/" target="_blank" class="btn">Instagram</a>
                 </div>
             </section>
         </div>
@@ -127,6 +128,7 @@
             <div class="footer-right">
                 <div class="social-links">
                     <a href="https://www.facebook.com/nellysgrillanddairybar" target="_blank" class="social-link">FB</a>
+                    <a href="https://www.instagram.com/nellysgrillanddairybar/" target="_blank" class="social-link">IG</a>
                 </div>
                 <span class="footer-credit">Website by Justin Greeno</span>
             </div>
@@ -134,6 +136,7 @@
         <a href="secret.html" class="footer-secret" tabindex="-1">J</a>
         <a href="menu-print.html" class="footer-secret footer-secret--r2" tabindex="-1">P</a>
         <a href="menu-tv.html" class="footer-secret footer-secret--r1" tabindex="-1">T</a>
+        <a href="dairy-bar-menu.html" class="footer-secret footer-secret--r3" tabindex="-1">D</a>
     </footer>
 
     <!-- Lightbox -->
@@ -215,18 +218,39 @@
         const ICECREAM_MAX  = 10;
         const SOCIAL_MAX    = 10;
 
-        // Custom-named food files (not matching the auto-detected pattern above)
+        // Custom-named food files
         const NAMED_FOOD = [
-            { src: 'images/food/lobster-roll.jpg',                     caption: 'Lobster Roll',           tags: ['seafood', 'lobster'] },
-            { src: 'images/food/nellys-fish-and-chips.png', caption: 'Fish and Chips',         tags: ['seafood', 'fish'] },
-            { src: 'images/food/hawaiian-pizza-pineapple-ham.png',     caption: 'Hawaiian Pizza',         tags: ['pizza'] },
-            { src: 'images/food/chicken-tenders.png',                  caption: 'Chicken Tenders',        tags: ['chicken'] },
-            { src: 'images/food/nellys-food-golden.png',               caption: 'Food at Nellys',         tags: ['food'] },
-            { src: 'images/food/nellys-pizza-golden.png',              caption: 'Golden Pizza',           tags: ['pizza'] },
-            { src: 'images/food/nellys-daily-food-1.png',              caption: 'Home Cooking at Nellys', tags: ['food'] },
-            { src: 'images/food/nellys-daily-food-2.png',              caption: 'Fresh from the Kitchen', tags: ['food'] },
-            { src: 'images/food/nellys-menu-food-3.png',               caption: 'Great Eats at Nellys',   tags: ['food'] },
-            { src: 'images/food/nellys-menu-food-4.png',               caption: 'Food at Nellys',         tags: ['food'] },
+            { src: 'images/food/lobster-roll.jpg',                    caption: 'Lobster Roll',               tags: ['seafood', 'lobster'] },
+            { src: 'images/food/nellys-fish-and-chips-actual.png',    caption: "Nelly's Fish & Chips",        tags: ['seafood', 'fish'] },
+            { src: 'images/food/nellys-haddock-and-chips.png',        caption: 'Haddock & Chips',             tags: ['seafood', 'fish'] },
+            { src: 'images/food/nellys-fish-and-chips-basket.png',    caption: 'Fish & Chips',                tags: ['seafood', 'fish'] },
+            { src: 'images/food/hawaiian-pizza-pineapple-ham.png',    caption: 'Hawaiian Pizza',              tags: ['pizza'] },
+            { src: 'images/food/nellys-pizza-hawaiian.png',           caption: 'Fresh Pizza',                 tags: ['pizza'] },
+            { src: 'images/food/nellys-pizza-pepperoni.png',          caption: 'Pepperoni Pizza',             tags: ['pizza'] },
+            { src: 'images/food/nellys-pizza-deluxe.png',             caption: 'Deluxe Pizza',                tags: ['pizza'] },
+            { src: 'images/food/nellys-pizza-actual.png',             caption: "Nelly's Pizza",               tags: ['pizza'] },
+            { src: 'images/food/nellys-garlic-fingers.png',           caption: 'Garlic Fingers',              tags: ['pizza', 'food'] },
+            { src: 'images/food/nellys-lobster-roll.png',             caption: 'Lobster Roll Basket',         tags: ['seafood', 'lobster'] },
+            { src: 'images/food/nellys-lobster-roll-loaded.png',      caption: 'Loaded Lobster Roll',         tags: ['seafood', 'lobster'] },
+            { src: 'images/food/nellys-lobster-roll-actual.png',      caption: "Nelly's Lobster Roll",        tags: ['seafood', 'lobster'] },
+            { src: 'images/food/nellys-clam-platter.png',             caption: 'Clam Platter',                tags: ['seafood', 'clams'] },
+            { src: 'images/food/nellys-clam-platter-actual.png',      caption: "Nelly's Clam Platter",        tags: ['seafood', 'clams'] },
+            { src: 'images/food/nellys-fried-clams.png',              caption: 'Fried Clams & Fries',         tags: ['seafood'] },
+            { src: 'images/food/nellys-buffalo-wings.png',            caption: 'Buffalo Wings',               tags: ['chicken', 'wings'] },
+            { src: 'images/food/nellys-buffalo-wings-2.png',          caption: 'Wings Basket',                tags: ['chicken', 'wings'] },
+            { src: 'images/food/nellys-burger-double-cheese.png',     caption: 'Double Cheeseburger',         tags: ['beef', 'burgers'] },
+            { src: 'images/food/nellys-burger-onion-ring.png',        caption: 'Burger with Onion Ring',      tags: ['beef', 'burgers'] },
+            { src: 'images/food/nellys-burger-with-fries.png',        caption: "Nelly's Burger & Fries",      tags: ['beef', 'burgers'] },
+            { src: 'images/food/nellys-burger-and-fries-actual.png',  caption: "Nelly's Burger",              tags: ['beef', 'burgers'] },
+            { src: 'images/food/nellys-burger-actual.png',            caption: 'Fresh Burger',                tags: ['beef', 'burgers'] },
+            { src: 'images/food/nellys-chicken-wrap.png',             caption: 'Chicken Caesar Wrap',         tags: ['chicken'] },
+            { src: 'images/food/nellys-club-sandwich.png',            caption: 'Club Sandwich',               tags: ['food'] },
+            { src: 'images/food/nellys-club-sandwich-actual.png',     caption: "Nelly's Club Sandwich",       tags: ['food'] },
+            { src: 'images/food/nellys-steak-and-fries.png',          caption: 'Steak & Fries',               tags: ['beef'] },
+            { src: 'images/food/nellys-onion-rings.png',              caption: 'Onion Rings',                 tags: ['food'] },
+            { src: 'images/food/nellys-onion-rings-actual.png',       caption: "Nelly's Onion Rings",         tags: ['food'] },
+            { src: 'images/food/nellys-poutine.png',                  caption: 'Poutine',                     tags: ['food'] },
+            { src: 'images/food/nellys-poutine-actual.png',           caption: "Nelly's Poutine",             tags: ['food'] },
         ];
 
         // Named ice cream files (softserve has a descriptive name; numbered ones are auto-detected)

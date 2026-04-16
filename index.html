@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nelly's Grill & Dairy Bar | West Pugwash, NS</title>
-    <meta name="description" content="Nelly's Grill & Dairy Bar - Family-friendly restaurant in West Pugwash, Nova Scotia. Fresh seafood, fried chicken, burgers, and ice cream.">
+    <meta name="description" content="Nelly's Grill & Dairy Bar - Family-friendly restaurant in West Pugwash, Nova Scotia. Fresh seafood, fried chicken, burgers, and ice cream. Dog-friendly patio. Open Tue–Sun 11AM–7PM.">
+    <meta name="keywords" content="Nelly's Grill Dairy Bar, West Pugwash restaurant, Nova Scotia seafood, fish and chips, fried chicken, lobster roll, clam platter, scallops, chowder, ice cream soft serve dairy bar, dog friendly patio, outdoor seating, pizza meatlovers donair, burgers local beef, takeout call ahead, family restaurant, kids menu, local food Pugwash NS, Atlantic haddock, poutine, chicken wings">
 
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Nelly's Grill & Dairy Bar | West Pugwash, NS">
     <meta property="og:description" content="Family-friendly restaurant in West Pugwash, Nova Scotia. Fresh seafood, fried chicken, burgers, and ice cream. Open Tue-Sun 11AM-7PM.">
     <meta property="og:image" content="images/logos/Nelly Logo This One.png">
-    <meta property="og:url" content="index.html">
+    <meta property="og:url" content="https://nellysgrillanddairybar.com/">
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- CSS -->
@@ -166,10 +167,13 @@
                         </a>
                     </div>
                     <div class="contact-item">
-                        <h3>📘 Follow Us</h3>
+                        <h3>📱 Follow Us</h3>
                         <p>@nellysgrillanddairybar</p>
                         <a href="https://www.facebook.com/nellysgrillanddairybar" target="_blank" class="map-link" style="margin-top:0.5rem;">
                             Facebook Page
+                        </a>
+                        <a href="https://www.instagram.com/nellysgrillanddairybar/" target="_blank" class="map-link" style="margin-top:0.5rem;">
+                            Instagram
                         </a>
                     </div>
                 </div>
@@ -197,6 +201,7 @@
             <div class="footer-right">
                 <div class="social-links">
                     <a href="https://www.facebook.com/nellysgrillanddairybar" target="_blank" class="social-link">FB</a>
+                    <a href="https://www.instagram.com/nellysgrillanddairybar/" target="_blank" class="social-link">IG</a>
                 </div>
                 <span class="footer-credit">Website by Justin Greeno</span>
             </div>
@@ -204,6 +209,7 @@
         <a href="secret.html" class="footer-secret" tabindex="-1">J</a>
         <a href="menu-print.html" class="footer-secret footer-secret--r2" tabindex="-1">P</a>
         <a href="menu-tv.html" class="footer-secret footer-secret--r1" tabindex="-1">T</a>
+        <a href="dairy-bar-menu.html" class="footer-secret footer-secret--r3" tabindex="-1">D</a>
     </footer>
 
     <!-- JSON-LD Structured Data (SEO / Google) -->
@@ -212,8 +218,8 @@
       "@context": "https://schema.org",
       "@type": "Restaurant",
       "name": "Nelly's Grill & Dairy Bar",
-      "description": "Family-friendly restaurant in West Pugwash, Nova Scotia. Fresh seafood, fried chicken, burgers, and ice cream.",
-      "url": "index.html",
+      "description": "Family-friendly restaurant in West Pugwash, Nova Scotia. Fresh Atlantic seafood, fried chicken, homemade burgers, pizza, and hand-dipped ice cream. Dog-friendly outdoor patio. Takeout available. Open Tuesday to Sunday 11AM to 7PM.",
+      "url": "https://nellysgrillanddairybar.com/",
       "telephone": "+19022432129",
       "address": {
         "@type": "PostalAddress",
@@ -223,12 +229,27 @@
         "postalCode": "B0K 1K0",
         "addressCountry": "CA"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 45.854,
+        "longitude": -63.694
+      },
       "openingHoursSpecification": [
         { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "11:00", "closes": "19:00" }
       ],
-      "servesCuisine": ["Seafood","Canadian","American","Ice Cream"],
+      "servesCuisine": ["Seafood","Canadian","American","Ice Cream","Pizza","Fried Chicken","Burgers"],
       "priceRange": "$",
-      "sameAs": ["https://www.facebook.com/nellysgrillanddairybar"]
+      "menu": "https://nellysgrillanddairybar.com/menu.html",
+      "hasMap": "https://www.google.com/maps/search/?api=1&query=8890+RT-6+West+Pugwash+NS+B0K+1K0",
+      "image": "https://nellysgrillanddairybar.com/images/logos/Nelly%20Logo%20This%20One.png",
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Dog Friendly Patio", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Takeout Available", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Family Friendly", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Outdoor Seating", "value": true }
+      ],
+      "sameAs": ["https://www.facebook.com/nellysgrillanddairybar", "https://www.instagram.com/nellysgrillanddairybar/"],
+      "keywords": "seafood, fish and chips, lobster roll, fried chicken, ice cream, pizza, burgers, dog friendly, takeout, West Pugwash, Nova Scotia"
     }
     </script>
 
@@ -394,16 +415,38 @@
         const SOCIAL_MAX    = 10;
 
         const NAMED_FOOD = [
-            { src: 'images/food/lobster-roll.jpg',                             caption: 'Lobster Roll',               tags: ['seafood','lobster'] },
-            { src: 'images/food/nellys-fish-and-chips.png',                     caption: 'Fish and Chips',             tags: ['fish','seafood','chips'] },
-            { src: 'images/food/chicken-tenders.png',                          caption: 'Chicken Tenders',            tags: ['chicken'] },
-            { src: 'images/food/hawaiian-pizza-pineapple-ham.png',             caption: 'Hawaiian Pizza',             tags: ['pizza'] },
-            { src: 'images/food/nellys-pizza-golden.png',                      caption: 'Golden Pizza',               tags: ['pizza'] },
-            { src: 'images/food/nellys-food-golden.png',                       caption: 'Food at Nellys',             tags: ['food'] },
-            { src: 'images/food/nellys-menu-food-4.png',                       caption: 'Food at Nellys',             tags: ['food'] },
-            { src: 'images/food/nellys-menu-food-3.png',                       caption: 'Great Eats at Nellys',       tags: ['food'] },
-            { src: 'images/food/nellys-daily-food-2.png',                      caption: 'Fresh from the Kitchen',     tags: ['food'] },
-            { src: 'images/food/nellys-daily-food-1.png',                      caption: 'Home Cooking at Nellys',     tags: ['food'] },
+            { src: 'images/food/lobster-roll.jpg',                    caption: 'Lobster Roll',                      tags: ['seafood','lobster'] },
+            { src: 'images/food/nellys-fish-and-chips-actual.png',    caption: "Nelly's Fish & Chips",              tags: ['fish','seafood','chips'] },
+            { src: 'images/food/nellys-haddock-and-chips.png',        caption: 'Haddock & Chips',                   tags: ['fish','seafood'] },
+            { src: 'images/food/nellys-fish-and-chips-basket.png',    caption: 'Fish & Chips',                      tags: ['fish','seafood'] },
+            { src: 'images/food/hawaiian-pizza-pineapple-ham.png',    caption: 'Hawaiian Pizza',                    tags: ['pizza'] },
+            { src: 'images/food/nellys-pizza-hawaiian.png',           caption: 'Fresh Pizza',                       tags: ['pizza'] },
+            { src: 'images/food/nellys-pizza-pepperoni.png',          caption: 'Pepperoni Pizza',                   tags: ['pizza'] },
+            { src: 'images/food/nellys-pizza-deluxe.png',             caption: 'Deluxe Pizza',                      tags: ['pizza'] },
+            { src: 'images/food/nellys-pizza-actual.png',             caption: "Nelly's Pizza",                     tags: ['pizza'] },
+            { src: 'images/food/nellys-garlic-fingers.png',           caption: 'Garlic Fingers',                    tags: ['pizza','food'] },
+            { src: 'images/food/nellys-lobster-roll.png',             caption: 'Lobster Roll Basket',               tags: ['seafood','lobster'] },
+            { src: 'images/food/nellys-lobster-roll-loaded.png',      caption: 'Loaded Lobster Roll',               tags: ['seafood','lobster'] },
+            { src: 'images/food/nellys-lobster-roll-actual.png',      caption: "Nelly's Lobster Roll",              tags: ['seafood','lobster'] },
+            { src: 'images/food/nellys-clam-platter.png',             caption: 'Clam Platter',                      tags: ['seafood','clams'] },
+            { src: 'images/food/nellys-clam-platter-actual.png',      caption: "Nelly's Clam Platter",              tags: ['seafood','clams'] },
+            { src: 'images/food/nellys-fried-clams.png',              caption: 'Fried Clams & Fries',               tags: ['seafood','clams'] },
+            { src: 'images/food/nellys-buffalo-wings.png',            caption: 'Buffalo Wings',                     tags: ['chicken','wings'] },
+            { src: 'images/food/nellys-buffalo-wings-2.png',          caption: 'Wings Basket',                      tags: ['chicken','wings'] },
+            { src: 'images/food/nellys-burger-double-cheese.png',     caption: 'Double Cheeseburger',               tags: ['beef','burgers'] },
+            { src: 'images/food/nellys-burger-onion-ring.png',        caption: 'Burger with Onion Ring',            tags: ['beef','burgers'] },
+            { src: 'images/food/nellys-burger-with-fries.png',        caption: "Nelly's Burger & Fries",            tags: ['beef','burgers'] },
+            { src: 'images/food/nellys-burger-and-fries-actual.png',  caption: "Nelly's Burger",                    tags: ['beef','burgers'] },
+            { src: 'images/food/nellys-burger-actual.png',            caption: 'Fresh Burger',                      tags: ['beef','burgers'] },
+            { src: 'images/food/nellys-chicken-wrap.png',             caption: 'Chicken Caesar Wrap',               tags: ['chicken'] },
+            { src: 'images/food/nellys-club-sandwich.png',            caption: 'Club Sandwich',                     tags: ['food'] },
+            { src: 'images/food/nellys-club-sandwich-actual.png',     caption: "Nelly's Club Sandwich",             tags: ['food'] },
+            { src: 'images/food/nellys-deli-sandwich.png',            caption: 'Deli Sandwich',                     tags: ['food'] },
+            { src: 'images/food/nellys-steak-and-fries.png',          caption: 'Steak & Fries',                     tags: ['beef'] },
+            { src: 'images/food/nellys-onion-rings.png',              caption: 'Onion Rings',                       tags: ['food'] },
+            { src: 'images/food/nellys-onion-rings-actual.png',       caption: "Nelly's Onion Rings",               tags: ['food'] },
+            { src: 'images/food/nellys-poutine.png',                  caption: 'Poutine',                           tags: ['food'] },
+            { src: 'images/food/nellys-poutine-actual.png',           caption: "Nelly's Poutine",                   tags: ['food'] },
         ];
         const NAMED_ICECREAM = [
             { src: 'images/icecream/nellys-icecream-softserve.png', caption: 'Soft Serve Ice Cream', tags: ['icecream','softserve','dairy'] },

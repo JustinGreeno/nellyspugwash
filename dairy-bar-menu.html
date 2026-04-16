@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nelly's Dairy Bar — Ice Cream Menu</title>
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --pink:       #f472b6;
+            --pink-dark:  #be185d;
+            --teal:       #2dd4bf;
+            --teal-dark:  #0f766e;
+            --cream:      #fffbf0;
+            --soft-blue:  #e0f2fe;
+            --text:       #1a2e3a;
+            --muted:      #4a6470;
+            --gold:       #f59e0b;
+            --shadow:     rgba(0,0,0,0.10);
+        }
+
+        html { font-size: 16px; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(160deg, #fce7f3 0%, #e0f2fe 40%, #f0fdf4 100%);
+            min-height: 100vh;
+            color: var(--text);
+        }
+
+        /* ── Back bar ── */
+        .back-bar {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--pink);
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--muted);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .back-bar a { color: var(--pink-dark); font-weight: 700; text-decoration: none; }
+        .back-bar a:hover { text-decoration: underline; }
+
+        /* ── Hero ── */
+        .dairy-hero {
+            text-align: center;
+            padding: 2.5rem 1rem 2rem;
+            position: relative;
+        }
+        .dairy-hero-img-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .dairy-hero-img-row img {
+            height: 130px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+        }
+        .dairy-hero h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(2rem, 6vw, 3.4rem);
+            color: var(--pink-dark);
+            line-height: 1.15;
+            text-shadow: 2px 3px 0 rgba(0,0,0,0.06);
+        }
+        .dairy-hero h1 span { color: var(--teal-dark); }
+        .dairy-hero .subtitle {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-top: 0.5rem;
+            letter-spacing: 0.04em;
+        }
+        .dairy-hero .pup-cup-note {
+            display: inline-block;
+            margin-top: 0.75rem;
+            background: #fef9c3;
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 0.3rem 1.1rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #92400e;
+        }
+
+        /* ── Wavy divider ── */
+        .wave-divider {
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .wave-divider svg { display: block; width: 100%; height: 50px; }
+
+        /* ── Main content ── */
+        .dairy-content {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+
+        /* ── Section cards ── */
+        .menu-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px var(--shadow);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .menu-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem 0.75rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+        .menu-card-header h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.5rem;
+            color: var(--pink-dark);
+            letter-spacing: 0.03em;
+        }
+        .menu-card-header h2.teal { color: var(--teal-dark); }
+        .menu-card-img {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        .menu-card-body {
+            padding: 0.75rem 1.5rem 1.25rem;
+        }
+
+        /* ── Size rows ── */
+        .size-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.55rem 0;
+            border-bottom: 1px dashed #e5e7eb;
+            font-size: 1.05rem;
+        }
+        .size-row:last-child { border-bottom: none; }
+        .size-label { font-weight: 700; color: var(--text); }
+        .size-sub { font-size: 0.82rem; color: var(--muted); margin-top: 1px; }
+        .size-price {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.25rem;
+            color: var(--pink-dark);
+            white-space: nowrap;
+        }
+        .size-price.teal { color: var(--teal-dark); }
+
+        /* ── 2-col grid for sections ── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 620px) {
+            .card-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Single-price item ── */
+        .single-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.85rem 1.5rem;
+            font-size: 1.05rem;
+        }
+        .single-item .name { font-weight: 700; }
+        .single-item .desc { font-size: 0.82rem; color: var(--muted); }
+        .single-item .price {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.35rem;
+            color: var(--teal-dark);
+            white-space: nowrap;
+        }
+
+        /* ── Photo strip ── */
+        .photo-strip {
+            display: flex;
+            gap: 0.75rem;
+            overflow-x: auto;
+            padding: 1rem 1.5rem;
+            scrollbar-width: none;
+        }
+        .photo-strip::-webkit-scrollbar { display: none; }
+        .photo-strip img {
+            height: 160px;
+            width: auto;
+            min-width: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex-shrink: 0;
+            box-shadow: 0 3px 12px var(--shadow);
+        }
+
+        /* ── Callout box ── */
+        .pup-callout {
+            background: linear-gradient(135deg, #fef9c3, #fef3c7);
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .pup-callout .icon { font-size: 2.5rem; flex-shrink: 0; }
+        .pup-callout h3 { font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: #92400e; }
+        .pup-callout p { font-size: 0.92rem; color: #78350f; margin-top: 0.2rem; }
+        .pup-callout .pup-price { font-family: 'Fredoka One', cursive; font-size: 1.4rem; color: #92400e; white-space: nowrap; }
+
+        /* ── Footer ── */
+        .dairy-footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(6px);
+            font-size: 0.9rem;
+            color: var(--muted);
+            border-top: 2px solid var(--pink);
+        }
+        .dairy-footer strong { color: var(--pink-dark); }
+    </style>
+</head>
+<body>
+
+<div class="back-bar">
+    <a href="index.html">&#8592; Back to Nelly's</a>
+    <span>Dairy Bar Menu &mdash; Right Next Door to the Grill!</span>
+</div>
+
+<!-- Hero -->
+<div class="dairy-hero">
+    <div class="dairy-hero-img-row">
+        <img src="images/icecream/nellys-icecream-softserve.png" alt="Soft serve ice cream at Nelly's Dairy Bar">
+        <img src="images/logos/icecream logo.png" alt="Nelly's Dairy Bar soft serve cones">
+    </div>
+    <h1>Nelly's <span>Dairy Bar</span></h1>
+    <p class="subtitle">Right Next Door to Nelly's Grill &nbsp;&bull;&nbsp; West Pugwash, Nova Scotia</p>
+    <span class="pup-cup-note">&#x1F43E; Dog Friendly — ask us about the Pup Cup!</span>
+</div>
+
+<div class="wave-divider">
+    <svg viewBox="0 0 1200 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,30 C300,60 900,0 1200,30 L1200,50 L0,50 Z" fill="white" opacity="0.7"/>
+    </svg>
+</div>
+
+<div class="dairy-content">
+
+    <!-- Ice cream photos -->
+    <div class="photo-strip">
+        <img src="images/icecream/nellys-icecream-1.png" alt="Ice cream at Nelly's Dairy Bar, West Pugwash NS">
+        <img src="images/icecream/nellys-icecream-2.png" alt="Soft serve cones at Nelly's Dairy Bar">
+        <img src="images/icecream/nellys-icecream-3.png" alt="Nelly's Dairy Bar ice cream">
+        <img src="images/icecream/nellys-icecream-softserve.png" alt="Nelly's soft serve ice cream Nova Scotia">
+    </div>
+
+    <!-- Pup Cup callout -->
+    <div class="pup-callout">
+        <div class="icon">&#x1F436;</div>
+        <div style="flex:1;">
+            <h3>Pup Cup</h3>
+            <p>A dog-friendly soft serve treat — perfect for your four-legged friend on the patio!</p>
+        </div>
+        <div class="pup-price">$2.88</div>
+    </div>
+
+    <!-- Soft Serve + Dip Cones side by side -->
+    <div class="card-grid">
+
+        <div class="menu-card">
+            <div class="menu-card-header">
+                <img src="images/logos/icecream logo.png" alt="" class="menu-card-img">
+                <h2>&#127846; Soft Serve</h2>
+            </div>
+            <div class="menu-card-body">
+                <div class="size-row">
+                    <div><div class="size-label">Small</div></div>
+                    <div class="size-price">$2.88</div>
+                </div>
+                <div class="size-row">
+                    <div><div class="size-label">Medium</div></div>
+                    <div class="size-price">$4.03</div>
+                </div>
+                <div class="size-row">
+                    <div><div class="size-label">Large</div></div>
+                    <div class="size-price">$5.18</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <div class="menu-card-header">
+                <span style="font-size:2.2rem;">&#127850;</span>
+                <h2 class="teal">Dip Cones</h2>
+            </div>
+            <div class="menu-card-body">
+                <div class="size-row">
+                    <div><div class="size-label">Small</div></div>
+                    <div class="size-price teal">$3.84</div>
+                </div>
+                <div class="size-row">
+                    <div><div class="size-label">Regular</div></div>
+                    <div class="size-price teal">$4.89</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Slushies -->
+    <div class="menu-card">
+        <div class="single-item">
+            <div>
+                <div class="name">&#127827; Slushies</div>
+                <div class="desc">Ice cold fruit slush — refreshing on a hot day!</div>
+            </div>
+            <div class="price">$4.70</div>
+        </div>
+    </div>
+
+    <!-- Hard Ice Cream -->
+    <div class="menu-card">
+        <div class="menu-card-header">
+            <span style="font-size:2.2rem;">&#127856;</span>
+            <h2>Hard Ice Cream</h2>
+        </div>
+        <div class="menu-card-body">
+            <div class="size-row">
+                <div><div class="size-label">1 Scoop</div></div>
+                <div class="size-price">$3.65</div>
+            </div>
+            <div class="size-row">
+                <div><div class="size-label">2 Scoops</div></div>
+                <div class="size-price">$4.65</div>
+            </div>
+            <div class="size-row">
+                <div><div class="size-label">3 Scoops</div></div>
+                <div class="size-price">$5.65</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Specialty treats grid -->
+    <div class="card-grid">
+
+        <div class="menu-card">
+            <div class="menu-card-header">
+                <span style="font-size:2rem;">&#127845;</span>
+                <h2>Banana Split</h2>
+            </div>
+            <div class="menu-card-body">
+                <div class="size-row">
+                    <div><div class="size-label">Classic Banana Split</div><div class="size-sub">Three scoops, toppings &amp; whip</div></div>
+                    <div class="size-price">$6.65</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <div class="menu-card-header">
+                <span style="font-size:2rem;">&#127868;</span>
+                <h2 class="teal">Sundae</h2>
+            </div>
+            <div class="menu-card-body">
+                <div class="size-row">
+                    <div><div class="size-label">Ice Cream Sundae</div><div class="size-sub">Soft serve with your favourite toppings</div></div>
+                    <div class="size-price teal">$5.75</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <div class="menu-card-header">
+                <span style="font-size:2rem;">&#127865;</span>
+                <h2>Milkshake</h2>
+            </div>
+            <div class="menu-card-body">
+                <div class="size-row">
+                    <div><div class="size-label">Classic Milkshake</div><div class="size-sub">Thick, creamy &amp; delicious</div></div>
+                    <div class="size-price">$5.75</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-card">
+            <div class="menu-card-header">
+                <span style="font-size:2rem;">&#127848;</span>
+                <h2 class="teal">Flurry</h2>
+            </div>
+            <div class="menu-card-body">
+                <div class="size-row">
+                    <div><div class="size-label">Ice Cream Flurry</div><div class="size-sub">Soft serve blended with your favourite mix-ins</div></div>
+                    <div class="size-price teal">$5.75</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Slush Bung -->
+    <div class="menu-card">
+        <div class="single-item">
+            <div>
+                <div class="name">&#127827; Slush (Bung)</div>
+                <div class="desc">A Nova Scotia classic — frozen slush punch!</div>
+            </div>
+            <div class="price">$5.70</div>
+        </div>
+    </div>
+
+</div><!-- .dairy-content -->
+
+<div class="dairy-footer">
+    <p><strong>Nelly's Dairy Bar</strong> &nbsp;&bull;&nbsp; Right next door to the Grill &nbsp;&bull;&nbsp; West Pugwash, Nova Scotia</p>
+    <p style="margin-top:0.4rem;">Dog-friendly patio &#x1F43E; &nbsp;&bull;&nbsp; (902) 243-2129 &nbsp;&bull;&nbsp; Tue&ndash;Sun 11 AM &ndash; 7 PM</p>
+    <p style="margin-top:0.4rem;">Prices subject to change &nbsp;&bull;&nbsp; HST not included</p>
+</div>
+
+</body>
+</html>

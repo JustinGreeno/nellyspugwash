@@ -12,7 +12,7 @@
     --gold-light:    #fef3d0;
     --navy:          #1a3545;
     --text:          #1e2d3a;
-    --text-muted:    #5a6e7f;
+    --text-muted:    #3d5260;
     --bg:            #cde9e7;
     --white:         #ffffff;
     --card-bg:       #ffffff;
@@ -928,12 +928,12 @@ nav a.active {
 .menu-item-name {
     font-weight: 800;
     color: var(--text);
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 1.4;
 }
 
 .menu-item-desc {
-    font-size: 0.92rem;
+    font-size: 1rem;
     color: var(--text-muted);
     margin-top: 0.25rem;
     line-height: 1.5;
@@ -1186,6 +1186,10 @@ footer {
 }
 .footer-secret--r2 {
     left: 36px;
+    bottom: 8px;
+}
+.footer-secret--r3 {
+    left: 50px;
     bottom: 8px;
 }
 
@@ -1513,6 +1517,7 @@ main { padding-bottom: 110px; }
     position: relative;
     padding-top: 1.5rem;
     border-left-color: var(--gold) !important;
+    background: linear-gradient(to right, #fffbe6, #fffef5);
 }
 .menu-item.fan-fave::before {
     content: '⭐ Fan Favourite';

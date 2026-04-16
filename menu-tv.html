@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
-        /* ── Reset ── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { font-size: 16px; }
 
@@ -19,7 +18,7 @@
             overflow-x: hidden;
         }
 
-        /* ── Back bar (not shown in TV fullscreen) ── */
+        /* ── Back bar ── */
         .back-bar {
             background: #1a1a1a;
             border-bottom: 1px solid #333;
@@ -39,7 +38,6 @@
             border-bottom: 3px solid #f0b429;
             display: flex;
             justify-content: center;
-            gap: 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -60,17 +58,15 @@
         }
         .screen-nav button:last-child { border-right: none; }
         .screen-nav button:hover { background: #2a2a2a; color: #fff; }
-        .screen-nav button.active {
-            background: #f0b429;
-            color: #000;
-        }
+        .screen-nav button.active { background: #f0b429; color: #000; }
 
         /* ── Screen panels ── */
         .tv-screen {
             display: none;
             background: #000;
-            min-height: calc(100vh - 90px);
-            padding: 2rem 3rem;
+            height: calc(100vh - 88px);
+            overflow: hidden;
+            padding: 1.25rem 2.5rem 0.75rem;
         }
         .tv-screen.active { display: block; }
 
@@ -78,49 +74,49 @@
         .tv-screen-header {
             text-align: center;
             border-bottom: 2px solid #f0b429;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
         }
         .tv-screen-header h1 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             color: #f0b429;
             letter-spacing: 0.15em;
         }
         .tv-screen-header p {
-            font-size: 0.85rem;
-            color: #888;
+            font-size: 0.9rem;
+            color: #999;
             letter-spacing: 0.08em;
-            margin-top: 0.3rem;
+            margin-top: 0.25rem;
         }
 
-        /* ── Section layout ── */
+        /* ── Column layout — always 3 cols on TV ── */
         .menu-columns {
             display: grid;
-            gap: 2rem 3rem;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem 2.5rem;
+            align-items: start;
         }
-        .menu-columns.cols-2 { grid-template-columns: 1fr 1fr; }
-        .menu-columns.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
 
         /* ── Category block ── */
-        .cat-block { }
         .cat-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
+            font-size: 1.9rem;
             color: #f0b429;
             letter-spacing: 0.12em;
-            border-bottom: 1px solid #333;
-            padding-bottom: 0.4rem;
-            margin-bottom: 0.75rem;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 0.35rem;
+            margin-bottom: 0.6rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
+        .cat-title.sub { font-size: 1.5rem; margin-top: 1.25rem; }
         .cat-subtitle {
-            font-size: 0.8rem;
-            color: #777;
-            letter-spacing: 0.06em;
-            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            color: #999;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.6rem;
             font-style: italic;
         }
 
@@ -129,38 +125,38 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 0.35rem 0;
-            border-bottom: 1px solid #1e1e1e;
+            padding: 0.32rem 0;
+            border-bottom: 1px solid #1a1a1a;
             gap: 0.5rem;
         }
         .tv-item:last-child { border-bottom: none; }
+        .tv-item-left { flex: 1; }
         .tv-item-name {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 500;
             color: #f0f0f0;
             letter-spacing: 0.02em;
         }
         .tv-item-desc {
-            font-size: 0.72rem;
-            color: #666;
+            font-size: 0.82rem;
+            color: #aaa;
             margin-top: 1px;
             font-weight: 300;
         }
         .tv-item-price {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: #f0b429;
             white-space: nowrap;
-            min-width: 52px;
+            min-width: 55px;
             text-align: right;
         }
-        .tv-item-left { flex: 1; }
 
-        /* ── Pizza price grid ── */
+        /* ── Pizza grid ── */
         .pizza-grid {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
         }
         .pizza-grid th {
             background: #f0b429;
@@ -168,13 +164,13 @@
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1.1rem;
             letter-spacing: 0.1em;
-            padding: 0.4rem 0.75rem;
+            padding: 0.35rem 0.6rem;
             text-align: center;
         }
         .pizza-grid th:first-child { text-align: left; }
         .pizza-grid td {
-            padding: 0.35rem 0.75rem;
-            border-bottom: 1px solid #1e1e1e;
+            padding: 0.28rem 0.6rem;
+            border-bottom: 1px solid #1a1a1a;
             color: #f0f0f0;
             font-size: 0.95rem;
         }
@@ -183,38 +179,52 @@
             color: #f0b429;
             font-weight: 700;
         }
-        .pizza-grid tr:nth-child(even) td { background: #0d0d0d; }
-        .pizza-desc {
-            font-size: 0.7rem;
-            color: #555;
+        .pizza-grid tr:nth-child(even) td { background: #0a0a0a; }
+        .pizza-desc { font-size: 0.72rem; color: #888; display: block; }
+
+        /* ── TV food photos ── */
+        .tv-food-img {
             display: block;
+            width: 100%;
+            max-height: 115px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+            border: 1px solid #2a2a2a;
         }
 
-        /* ── Ice cream grid ── */
-        .ic-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
+        /* ── Dairy bar callout ── */
+        .dairy-bar-callout {
+            background: linear-gradient(135deg, #0d1a2e, #1a2a4a);
+            border: 2px solid #6699ff;
+            border-radius: 8px;
+            padding: 0.9rem 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
-        .ic-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.3rem 0;
-            border-bottom: 1px solid #1e1e1e;
-            gap: 0.5rem;
+        .dairy-bar-callout h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: #99ccff;
+            letter-spacing: 0.15em;
         }
-        .ic-name { color: #f0f0f0; font-size: 0.95rem; }
-        .ic-price { color: #f0b429; font-weight: 700; font-size: 0.95rem; white-space: nowrap; }
+        .dairy-bar-callout p {
+            color: #ccdeff;
+            font-size: 1rem;
+            margin-top: 0.3rem;
+            letter-spacing: 0.04em;
+        }
 
-        /* ── Note / callout ── */
+        /* ── Note ── */
         .tv-note {
             background: #1a1400;
             border: 1px solid #f0b429;
             border-radius: 4px;
-            padding: 0.6rem 1rem;
-            margin-top: 0.75rem;
+            padding: 0.45rem 0.85rem;
+            margin-top: 0.6rem;
             color: #f0b429;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-align: center;
             letter-spacing: 0.04em;
         }
@@ -224,39 +234,30 @@
             background: #f0b429;
             color: #000;
             text-align: center;
-            padding: 0.65rem 1rem;
+            padding: 0.55rem 1rem;
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1.4rem;
             letter-spacing: 0.12em;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             border-radius: 4px;
         }
 
-        /* ── Footer info bar ── */
+        /* ── Footer bar ── */
         .tv-footer {
-            border-top: 1px solid #222;
-            margin-top: 2.5rem;
-            padding-top: 1rem;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 1rem;
+            padding-top: 0.6rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        .tv-footer span {
-            font-size: 0.8rem;
-            color: #555;
-            letter-spacing: 0.05em;
-        }
-        .tv-footer .phone {
-            color: #f0b429;
-            font-weight: 700;
-            font-size: 1rem;
-        }
+        .tv-footer span { font-size: 0.8rem; color: #555; letter-spacing: 0.05em; }
+        .tv-footer .phone { color: #f0b429; font-weight: 700; font-size: 1rem; }
 
         @media (max-width: 900px) {
-            .menu-columns.cols-2,
-            .menu-columns.cols-3 { grid-template-columns: 1fr; }
+            .menu-columns { grid-template-columns: 1fr; }
             .tv-screen { padding: 1.25rem; }
             .screen-nav button { padding: 0.6rem 1rem; font-size: 0.9rem; }
         }
@@ -275,8 +276,9 @@
     <button onclick="showScreen(3, this)">&#128250; Screen 3</button>
 </nav>
 
+
 <!-- ═══════════════════════════════════════════════════════
-     SCREEN 1 — Chicken | Burgers & Sandwiches | Soups
+     SCREEN 1 — Chicken | Burgers & Sandwiches | Soups & Kids
      ═══════════════════════════════════════════════════════ -->
 <section class="tv-screen active" id="screen1">
     <div class="tv-screen-header">
@@ -284,25 +286,18 @@
         <p>West Pugwash, NS &nbsp;&#9679;&nbsp; (902) 243-2129 &nbsp;&#9679;&nbsp; Tue&ndash;Sun 11AM&ndash;7PM</p>
     </div>
 
-    <div class="menu-columns cols-3">
+    <div class="menu-columns">
 
         <!-- CHICKEN -->
-        <div class="cat-block">
+        <div>
             <div class="cat-title">&#127831; Chicken</div>
             <div class="cat-subtitle">Served with fries or mash &amp; coleslaw</div>
-
             <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">2 pc Fried Chicken</div>
-                    <div class="tv-item-desc">With fries or mash &amp; coleslaw</div>
-                </div>
+                <div class="tv-item-left"><div class="tv-item-name">2 pc Fried Chicken</div></div>
                 <div class="tv-item-price">$12</div>
             </div>
             <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">3 pc Fried Chicken</div>
-                    <div class="tv-item-desc">With fries or mash &amp; coleslaw</div>
-                </div>
+                <div class="tv-item-left"><div class="tv-item-name">3 pc Fried Chicken</div></div>
                 <div class="tv-item-price">$14</div>
             </div>
             <div class="tv-item">
@@ -322,7 +317,7 @@
             <div class="tv-item">
                 <div class="tv-item-left">
                     <div class="tv-item-name">Chicken Caesar Wrap</div>
-                    <div class="tv-item-desc">Grilled chicken, Caesar dressing &amp; greens</div>
+                    <div class="tv-item-desc">Grilled chicken, Caesar &amp; greens</div>
                 </div>
                 <div class="tv-item-price">$18</div>
             </div>
@@ -351,10 +346,9 @@
         </div>
 
         <!-- BURGERS & SANDWICHES -->
-        <div class="cat-block">
+        <div>
             <div class="cat-title">&#127828; Burgers</div>
             <div class="cat-subtitle">Fresh local beef, charbroiled. Make it a platter +$5</div>
-
             <div class="tv-item">
                 <div class="tv-item-left"><div class="tv-item-name">Classic Burger</div></div>
                 <div class="tv-item-price">$9</div>
@@ -386,7 +380,7 @@
                 <div class="tv-item-price">$17</div>
             </div>
 
-            <div class="cat-title" style="font-size:1.5rem; margin-top:1.5rem;">&#129394; Sandwiches</div>
+            <div class="cat-title sub">&#129369; Sandwiches &amp; Wraps</div>
             <div class="tv-item">
                 <div class="tv-item-left"><div class="tv-item-name">Club &amp; Fries</div></div>
                 <div class="tv-item-price">$21</div>
@@ -408,10 +402,9 @@
             </div>
         </div>
 
-        <!-- SOUPS & SALADS + KIDS -->
-        <div class="cat-block">
-            <div class="cat-title">&#127843; Soups &amp; Salads</div>
-
+        <!-- SOUPS & SALADS -->
+        <div>
+            <div class="cat-title">&#127858; Soups &amp; Salads</div>
             <div class="tv-item">
                 <div class="tv-item-left">
                     <div class="tv-item-name">Seafood Chowder</div>
@@ -434,36 +427,15 @@
                 <div class="tv-item-left"><div class="tv-item-name">Chicken Caesar Wrap / Salad</div></div>
                 <div class="tv-item-price">$18</div>
             </div>
-
-            <div class="cat-title" style="font-size:1.5rem; margin-top:1.5rem;">&#128118; Kids Meals</div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Grilled Cheese &amp; Fries</div></div>
-                <div class="tv-item-price">$12</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Hot Dog &amp; Fries</div></div>
-                <div class="tv-item-price">$12</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Chicken Tenders &amp; Fries</div></div>
-                <div class="tv-item-price">$12</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Mini Burger &amp; Fries</div></div>
-                <div class="tv-item-price">$11</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Mac &amp; Cheese</div></div>
-                <div class="tv-item-price">$10</div>
-            </div>
+            <img src="images/food/nellys-burger-and-fries-actual.png" alt="Charbroiled burger and fries at Nelly's" class="tv-food-img">
+            <img src="images/food/nellys-chicken-wrap.png" alt="Chicken caesar wrap at Nelly's" class="tv-food-img" style="margin-top: 0.5rem;">
         </div>
 
     </div><!-- .menu-columns -->
 
-    <div class="tv-callout">For Events &amp; Reservations, Please Call Us</div>
+    <div class="tv-callout">Dog-Friendly Patio &#x1F43E; &nbsp;&mdash;&nbsp; Call for Takeout &amp; Reservations</div>
 
     <div class="tv-footer">
-        <span>(902) 243-2129</span>
         <span>8890 RT-6, West Pugwash, NS</span>
         <span class="phone">(902) 243-2129</span>
         <span>Tue&ndash;Sun 11AM&ndash;7PM</span>
@@ -473,7 +445,7 @@
 
 
 <!-- ═══════════════════════════════════════════════════════
-     SCREEN 2 — Seafood | Pizza | Appetizers
+     SCREEN 2 — From the Sea | Fresh Pizza | Appetizers & Snacks
      ═══════════════════════════════════════════════════════ -->
 <section class="tv-screen" id="screen2">
     <div class="tv-screen-header">
@@ -481,12 +453,11 @@
         <p>West Pugwash, NS &nbsp;&#9679;&nbsp; (902) 243-2129 &nbsp;&#9679;&nbsp; Tue&ndash;Sun 11AM&ndash;7PM</p>
     </div>
 
-    <div class="menu-columns cols-2">
+    <div class="menu-columns">
 
         <!-- SEAFOOD -->
-        <div class="cat-block">
+        <div>
             <div class="cat-title">&#128031; From the Sea</div>
-
             <div class="tv-item">
                 <div class="tv-item-left">
                     <div class="tv-item-name">Haddock &amp; Fries (1 pc)</div>
@@ -495,9 +466,7 @@
                 <div class="tv-item-price">$17</div>
             </div>
             <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">Haddock &amp; Fries (2 pc)</div>
-                </div>
+                <div class="tv-item-left"><div class="tv-item-name">Haddock &amp; Fries (2 pc)</div></div>
                 <div class="tv-item-price">$22</div>
             </div>
             <div class="tv-item">
@@ -508,9 +477,7 @@
                 <div class="tv-item-price">$23</div>
             </div>
             <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">Haddock Burger &amp; Fries</div>
-                </div>
+                <div class="tv-item-left"><div class="tv-item-name">Haddock Burger &amp; Fries</div></div>
                 <div class="tv-item-price">$17</div>
             </div>
             <div class="tv-item">
@@ -541,17 +508,90 @@
                 </div>
                 <div class="tv-item-price">$32</div>
             </div>
+            <div class="tv-item">
+                <div class="tv-item-left">
+                    <div class="tv-item-name">Seafood Chowder</div>
+                    <div class="tv-item-desc">Lobster, scallops, shrimp &amp; haddock</div>
+                </div>
+                <div class="tv-item-price">$7 / $12</div>
+            </div>
             <div class="tv-note">Add Fries to any item: $5</div>
+        </div>
 
-            <!-- APPETIZERS -->
-            <div class="cat-title" style="margin-top:1.75rem;">&#127839; Appetizers</div>
+        <!-- PIZZA -->
+        <div>
+            <div class="cat-title">&#127829; Fresh Pizza</div>
+            <div class="cat-subtitle">Available in 9" / 12" / 16"</div>
+            <table class="pizza-grid">
+                <thead>
+                    <tr>
+                        <th>Pizza</th>
+                        <th>9"</th>
+                        <th>12"</th>
+                        <th>16"</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Plain (Sauce &amp; Cheese)</td>
+                        <td>$12</td><td>$18</td><td>$22</td>
+                    </tr>
+                    <tr>
+                        <td>Meatlovers<span class="pizza-desc">Pepperoni, bacon, salami, ground beef</span></td>
+                        <td>$14</td><td>$21</td><td>$26</td>
+                    </tr>
+                    <tr>
+                        <td>Deluxe<span class="pizza-desc">Pepperoni, bacon, green pepper, mushroom, onion</span></td>
+                        <td>$14</td><td>$19</td><td>$25</td>
+                    </tr>
+                    <tr>
+                        <td>Hawaiian<span class="pizza-desc">Ham, pineapple, green pepper</span></td>
+                        <td>$14</td><td>$21</td><td>$26</td>
+                    </tr>
+                    <tr>
+                        <td>Vegetarian<span class="pizza-desc">Tomato, onion, green pepper, mushroom, olive</span></td>
+                        <td>$13</td><td>$21</td><td>$26</td>
+                    </tr>
+                    <tr>
+                        <td>Donair<span class="pizza-desc">East coast classic with sweet sauce</span></td>
+                        <td>$15</td><td>$22</td><td>$28</td>
+                    </tr>
+                    <tr>
+                        <td>Garlic Fingers<span class="pizza-desc">Cheesy garlic goodness</span></td>
+                        <td>$9</td><td>$14</td><td>$18</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="tv-note">Extra toppings +$2/$2.50/$3 &nbsp;|&nbsp; Extra cheese +$2/$4/$5 &nbsp;|&nbsp; Bacon +$2/$2.50/$3.50</div>
+            <img src="images/food/nellys-pizza-pepperoni.png" alt="Fresh pepperoni pizza at Nelly's" class="tv-food-img">
+        </div>
 
+        <!-- APPETIZERS & SNACKS -->
+        <div>
+            <div class="cat-title">&#127839; Appetizers &amp; Snacks</div>
+            <div class="tv-item">
+                <div class="tv-item-left">
+                    <div class="tv-item-name">1 lb Naked Chicken Wings</div>
+                    <div class="tv-item-desc">Naked or tossed in your choice of sauce</div>
+                </div>
+                <div class="tv-item-price">$19</div>
+            </div>
+            <div class="tv-item">
+                <div class="tv-item-left">
+                    <div class="tv-item-name">2 lb Bucket of Wings</div>
+                    <div class="tv-item-desc">Two pounds, 2 sauces</div>
+                </div>
+                <div class="tv-item-price">$39</div>
+            </div>
             <div class="tv-item">
                 <div class="tv-item-left"><div class="tv-item-name">Hand Cut Fries</div></div>
                 <div class="tv-item-price">$9</div>
             </div>
             <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Poutine</div><div class="tv-item-desc">Fries, cheese curds &amp; gravy</div></div>
+                <div class="tv-item-left">
+                    <div class="tv-item-name">Poutine</div>
+                    <div class="tv-item-desc">Fries, cheese curds &amp; gravy</div>
+                </div>
                 <div class="tv-item-price">$12</div>
             </div>
             <div class="tv-item">
@@ -571,87 +611,27 @@
                 <div class="tv-item-price">$10</div>
             </div>
             <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Nachos</div><div class="tv-item-desc">Chips, salsa, sour cream &amp; cheddar</div></div>
+                <div class="tv-item-left">
+                    <div class="tv-item-name">Nachos</div>
+                    <div class="tv-item-desc">Chips, salsa, sour cream &amp; cheddar</div>
+                </div>
                 <div class="tv-item-price">$14</div>
             </div>
             <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Loaded Nachos</div><div class="tv-item-desc">Add chicken or beef, jalapeños &amp; guac</div></div>
+                <div class="tv-item-left">
+                    <div class="tv-item-name">Loaded Nachos</div>
+                    <div class="tv-item-desc">Add chicken or beef, jalape&ntilde;os &amp; guac</div>
+                </div>
                 <div class="tv-item-price">$18</div>
             </div>
-        </div>
-
-        <!-- PIZZA -->
-        <div class="cat-block">
-            <div class="cat-title">&#127829; Fresh Pizza</div>
-            <div class="cat-subtitle">Available in 9" / 12" / 16"</div>
-
-            <table class="pizza-grid">
-                <thead>
-                    <tr>
-                        <th>Pizza</th>
-                        <th>9"</th>
-                        <th>12"</th>
-                        <th>16"</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Plain (Sauce &amp; Cheese)</td>
-                        <td>$12</td><td>$18</td><td>$22</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Meatlovers
-                            <span class="pizza-desc">Pepperoni, bacon, salami, ground beef</span>
-                        </td>
-                        <td>$14</td><td>$21</td><td>$26</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Deluxe
-                            <span class="pizza-desc">Pepperoni, bacon, green pepper, mushroom, onion</span>
-                        </td>
-                        <td>$14</td><td>$19</td><td>$25</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Hawaiian
-                            <span class="pizza-desc">Ham, pineapple, green pepper</span>
-                        </td>
-                        <td>$14</td><td>$21</td><td>$26</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Vegetarian
-                            <span class="pizza-desc">Tomato, onion, green pepper, mushroom, olive</span>
-                        </td>
-                        <td>$13</td><td>$21</td><td>$26</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Donair
-                            <span class="pizza-desc">East coast classic with sweet sauce</span>
-                        </td>
-                        <td>$15</td><td>$22</td><td>$28</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Garlic Fingers
-                            <span class="pizza-desc">Cheesy garlic goodness</span>
-                        </td>
-                        <td>$9</td><td>$14</td><td>$18</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="tv-note">Extra toppings +$2/$2.50/$3 &nbsp;|&nbsp; Extra cheese +$2/$4/$5 &nbsp;|&nbsp; Bacon +$2/$2.50/$3.50</div>
+            <img src="images/food/nellys-buffalo-wings.png" alt="Nelly's buffalo chicken wings" class="tv-food-img">
         </div>
 
     </div><!-- .menu-columns -->
 
-    <div class="tv-callout">For Events &amp; Reservations, Please Call Us &nbsp;&mdash;&nbsp; (902) 243-2129</div>
+    <div class="tv-callout">Dog-Friendly Patio &#x1F43E; &nbsp;&mdash;&nbsp; Call for Takeout &amp; Reservations &nbsp;&mdash;&nbsp; (902) 243-2129</div>
 
     <div class="tv-footer">
-        <span>(902) 243-2129</span>
         <span>8890 RT-6, West Pugwash, NS</span>
         <span class="phone">(902) 243-2129</span>
         <span>Tue&ndash;Sun 11AM&ndash;7PM</span>
@@ -661,92 +641,19 @@
 
 
 <!-- ═══════════════════════════════════════════════════════
-     SCREEN 3 — Ice Cream | Drinks | Desserts | Kids
+     SCREEN 3 — Kids Meals | Desserts | Beverages + Dairy Bar
      ═══════════════════════════════════════════════════════ -->
 <section class="tv-screen" id="screen3">
     <div class="tv-screen-header">
-        <h1>Nelly's Dairy Bar</h1>
+        <h1>Nelly's Grill &amp; Dairy Bar</h1>
         <p>West Pugwash, NS &nbsp;&#9679;&nbsp; (902) 243-2129 &nbsp;&#9679;&nbsp; Tue&ndash;Sun 11AM&ndash;7PM</p>
     </div>
 
-    <div class="menu-columns cols-3">
+    <div class="menu-columns">
 
-        <!-- ICE CREAM -->
-        <div class="cat-block">
-            <div class="cat-title">&#127846; Ice Cream</div>
-
-            <div class="cat-subtitle">Scoops &amp; Cones</div>
-            <div class="ic-grid">
-                <div class="ic-item"><span class="ic-name">Single Scoop</span><span class="ic-price">$4.50</span></div>
-                <div class="ic-item"><span class="ic-name">Double Scoop</span><span class="ic-price">$6.50</span></div>
-                <div class="ic-item"><span class="ic-name">Triple Scoop</span><span class="ic-price">$8.50</span></div>
-                <div class="ic-item"><span class="ic-name">Soft Serve Cone</span><span class="ic-price">$4.00</span></div>
-                <div class="ic-item"><span class="ic-name">Dipped Cone</span><span class="ic-price">$5.00</span></div>
-                <div class="ic-item"><span class="ic-name">Waffle Cone</span><span class="ic-price">+$1.00</span></div>
-            </div>
-
-            <div class="cat-subtitle" style="margin-top:1rem;">Specialty Treats</div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Sundae</div><div class="tv-item-desc">With your choice of toppings &amp; sauce</div></div>
-                <div class="tv-item-price">$7.50</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Flurry</div><div class="tv-item-desc">Soft serve blended with mix-ins</div></div>
-                <div class="tv-item-price">$6.50</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Banana Split</div><div class="tv-item-desc">Three scoops, banana, whipped cream</div></div>
-                <div class="tv-item-price">$11.00</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Milkshake</div><div class="tv-item-desc">Vanilla, chocolate, strawberry &amp; more</div></div>
-                <div class="tv-item-price">$8.00</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Float</div><div class="tv-item-desc">Pop with a scoop of soft serve</div></div>
-                <div class="tv-item-price">$6.00</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left"><div class="tv-item-name">Parfait</div><div class="tv-item-desc">Layers of ice cream, fruit &amp; granola</div></div>
-                <div class="tv-item-price">$7.00</div>
-            </div>
-        </div>
-
-        <!-- DESSERTS + KIDS -->
-        <div class="cat-block">
-            <div class="cat-title">&#127856; Desserts</div>
-
-            <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">Cake or Pie of the Day</div>
-                    <div class="tv-item-desc">Ask your server for today's selection</div>
-                </div>
-                <div class="tv-item-price">$5.50</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">Add a Scoop of Ice Cream</div>
-                </div>
-                <div class="tv-item-price">+$1.00</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">Brownie Sundae</div>
-                    <div class="tv-item-desc">Warm brownie with vanilla ice cream</div>
-                </div>
-                <div class="tv-item-price">$8.00</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">Cheesecake Slice</div>
-                    <div class="tv-item-desc">Ask about today's flavour</div>
-                </div>
-                <div class="tv-item-price">$6.50</div>
-            </div>
-
-            <div class="tv-note">&#10024; Ask Us About Our Desserts!</div>
-
-            <div class="cat-title" style="font-size:1.5rem; margin-top:1.75rem;">&#128118; Kids Meals</div>
+        <!-- KIDS MEALS -->
+        <div>
+            <div class="cat-title">&#128118; Kids Meals</div>
             <div class="tv-item">
                 <div class="tv-item-left"><div class="tv-item-name">Grilled Cheese &amp; Fries</div></div>
                 <div class="tv-item-price">$12</div>
@@ -769,10 +676,26 @@
             </div>
         </div>
 
-        <!-- DRINKS -->
-        <div class="cat-block">
-            <div class="cat-title">&#127861; Beverages</div>
+        <!-- DESSERTS -->
+        <div>
+            <div class="cat-title">&#127856; Desserts</div>
+            <div class="tv-item">
+                <div class="tv-item-left">
+                    <div class="tv-item-name">Cake or Pie of the Day</div>
+                    <div class="tv-item-desc">Ask your server for today's selection</div>
+                </div>
+                <div class="tv-item-price">$5.50</div>
+            </div>
+            <div class="tv-item">
+                <div class="tv-item-left"><div class="tv-item-name">Add a Scoop of Ice Cream</div></div>
+                <div class="tv-item-price">+$2.00</div>
+            </div>
+            <div class="tv-note">&#10024; Ask Us About Today's Desserts!</div>
+        </div>
 
+        <!-- BEVERAGES -->
+        <div>
+            <div class="cat-title">&#127861; Beverages</div>
             <div class="tv-item">
                 <div class="tv-item-left"><div class="tv-item-name">Coffee / Tea</div></div>
                 <div class="tv-item-price">$1.05</div>
@@ -811,28 +734,19 @@
                 </div>
                 <div class="tv-item-price">$7.00</div>
             </div>
-            <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">Lemonade</div>
-                    <div class="tv-item-desc">Fresh squeezed or pink lemonade</div>
-                </div>
-                <div class="tv-item-price">$3.50</div>
-            </div>
-            <div class="tv-item">
-                <div class="tv-item-left">
-                    <div class="tv-item-name">Iced Coffee</div>
-                    <div class="tv-item-desc">Cold brew over ice</div>
-                </div>
-                <div class="tv-item-price">$4.50</div>
-            </div>
         </div>
 
     </div><!-- .menu-columns -->
 
-    <div class="tv-callout">For Events &amp; Reservations, Please Call Us &nbsp;&mdash;&nbsp; (902) 243-2129</div>
+    <!-- Dairy Bar callout — below the menu grid -->
+    <div class="dairy-bar-callout" style="margin-top: 1.25rem; margin-bottom: 0;">
+        <h2>&#127846; Nelly's Dairy Bar — Right Next Door!</h2>
+        <p>Soft Serve &bull; Scoops &amp; Cones &bull; Milkshakes &bull; Sundaes &bull; Banana Splits &bull; Flurries &bull; Floats &bull; Dipped Cones</p>
+    </div>
+
+    <div class="tv-callout" style="margin-top: 0.75rem;">Dog-Friendly Patio &#x1F43E; &nbsp;&mdash;&nbsp; Call for Takeout &amp; Reservations &nbsp;&mdash;&nbsp; (902) 243-2129</div>
 
     <div class="tv-footer">
-        <span>(902) 243-2129</span>
         <span>8890 RT-6, West Pugwash, NS</span>
         <span class="phone">(902) 243-2129</span>
         <span>Tue&ndash;Sun 11AM&ndash;7PM</span>
@@ -842,10 +756,8 @@
 
 <script>
     function showScreen(num, btn) {
-        // Deactivate all screens and buttons
         document.querySelectorAll('.tv-screen').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.screen-nav button').forEach(b => b.classList.remove('active'));
-        // Activate selected
         document.getElementById('screen' + num).classList.add('active');
         btn.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
