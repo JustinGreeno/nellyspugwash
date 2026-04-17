@@ -60,27 +60,28 @@
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
         }
         .dairy-hero-img-row img {
-            height: 130px;
+            height: 220px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+            filter: drop-shadow(0 10px 24px rgba(0,0,0,0.18));
         }
         .dairy-hero h1 {
             font-family: 'Pacifico', cursive;
-            font-size: clamp(2rem, 6vw, 3.4rem);
+            font-size: clamp(2.8rem, 9vw, 5.2rem);
             color: var(--pink-dark);
-            line-height: 1.15;
-            text-shadow: 2px 3px 0 rgba(0,0,0,0.06);
+            line-height: 1.1;
+            text-shadow: 3px 4px 0 rgba(0,0,0,0.08);
         }
         .dairy-hero h1 span { color: var(--teal-dark); }
         .dairy-hero .subtitle {
-            font-size: 1.05rem;
+            font-size: 1.3rem;
             color: var(--muted);
-            margin-top: 0.5rem;
-            letter-spacing: 0.04em;
+            margin-top: 0.6rem;
+            letter-spacing: 0.05em;
+            font-weight: 700;
         }
         .dairy-hero .pup-cup-note {
             display: inline-block;
@@ -126,7 +127,7 @@
         }
         .menu-card-header h2 {
             font-family: 'Fredoka One', cursive;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--pink-dark);
             letter-spacing: 0.03em;
         }
@@ -246,8 +247,7 @@
 <!-- Hero -->
 <div class="dairy-hero">
     <div class="dairy-hero-img-row">
-        <img src="images/icecream/nellys-icecream-softserve.png" alt="Soft serve ice cream at Nelly's Dairy Bar">
-        <img src="images/logos/icecream logo.png" alt="Nelly's Dairy Bar soft serve cones">
+        <img src="images/logos/icecream logo.png" alt="Nelly's Dairy Bar">
     </div>
     <h1>Nelly's <span>Dairy Bar</span></h1>
     <p class="subtitle">Right Next Door to Nelly's Grill &nbsp;&bull;&nbsp; West Pugwash, Nova Scotia</p>
@@ -325,12 +325,15 @@
 
     <!-- Slushies -->
     <div class="menu-card">
-        <div class="single-item">
-            <div>
-                <div class="name">&#127827; Slushies</div>
-                <div class="desc">Ice cold fruit slush — refreshing on a hot day!</div>
+        <div class="menu-card-header">
+            <span style="font-size:2.2rem;">&#127827;</span>
+            <h2>Slushies</h2>
+        </div>
+        <div class="menu-card-body">
+            <div class="size-row">
+                <div><div class="size-label">Fruit Slush</div><div class="size-sub">Ice cold — refreshing on a hot day!</div></div>
+                <div class="size-price">$4.70</div>
             </div>
-            <div class="price">$4.70</div>
         </div>
     </div>
 
@@ -361,7 +364,7 @@
 
         <div class="menu-card">
             <div class="menu-card-header">
-                <span style="font-size:2rem;">&#127845;</span>
+                <span style="font-size:2rem;">&#127820;</span>
                 <h2>Banana Split</h2>
             </div>
             <div class="menu-card-body">
@@ -374,7 +377,7 @@
 
         <div class="menu-card">
             <div class="menu-card-header">
-                <span style="font-size:2rem;">&#127868;</span>
+                <span style="font-size:2rem;">&#127848;</span>
                 <h2 class="teal">Sundae</h2>
             </div>
             <div class="menu-card-body">
@@ -387,7 +390,7 @@
 
         <div class="menu-card">
             <div class="menu-card-header">
-                <span style="font-size:2rem;">&#127865;</span>
+                <span style="font-size:2rem;">&#129380;</span>
                 <h2>Milkshake</h2>
             </div>
             <div class="menu-card-body">
@@ -415,12 +418,15 @@
 
     <!-- Slush Bung -->
     <div class="menu-card">
-        <div class="single-item">
-            <div>
-                <div class="name">&#127827; Slush (Bung)</div>
-                <div class="desc">A Nova Scotia classic — frozen slush punch!</div>
+        <div class="menu-card-header">
+            <span style="font-size:2.2rem;">&#127827;</span>
+            <h2>Slush (Bung)</h2>
+        </div>
+        <div class="menu-card-body">
+            <div class="size-row">
+                <div><div class="size-label">Nova Scotia Slush Punch</div><div class="size-sub">A Maritime classic — frozen slush punch!</div></div>
+                <div class="size-price">$5.70</div>
             </div>
-            <div class="price">$5.70</div>
         </div>
     </div>
 

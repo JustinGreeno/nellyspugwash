@@ -72,11 +72,14 @@
 
         /* ── Screen header ── */
         .tv-screen-header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-bottom: 2px solid #f0b429;
-            padding-bottom: 0.75rem;
-            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.9rem;
         }
+        .tv-screen-header-text { text-align: center; }
         .tv-screen-header h1 {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 2.4rem;
@@ -182,16 +185,49 @@
         .pizza-grid tr:nth-child(even) td { background: #0a0a0a; }
         .pizza-desc { font-size: 0.72rem; color: #888; display: block; }
 
-        /* ── TV food photos ── */
-        .tv-food-img {
-            display: block;
-            width: 100%;
-            max-height: 115px;
-            object-fit: cover;
-            object-position: center;
+        /* ── TV food photos — Ken Burns + shine ── */
+        @keyframes kenBurns1 {
+            0%   { transform: scale(1)    translate(0,    0);    }
+            100% { transform: scale(1.09) translate(-2%, -2%);   }
+        }
+        @keyframes kenBurns2 {
+            0%   { transform: scale(1.07) translate(2%,  1%);    }
+            100% { transform: scale(1)    translate(-1%, -1.5%); }
+        }
+        @keyframes kenBurns3 {
+            0%   { transform: scale(1)    translate(-2%, 1.5%);  }
+            100% { transform: scale(1.08) translate(1.5%, -2%);  }
+        }
+        @keyframes tvImgShine {
+            0%, 80%, 100% { filter: brightness(1)    saturate(1);    }
+            87%           { filter: brightness(1.22) saturate(1.12); }
+        }
+        .tv-food-frame {
+            overflow: hidden;
             border-radius: 6px;
             margin-top: 0.75rem;
             border: 1px solid #2a2a2a;
+            height: 115px;
+        }
+        .tv-food-img {
+            display: block;
+            width: 100%;
+            height: 115px;
+            object-fit: cover;
+            object-position: center;
+            transform-origin: center center;
+        }
+        .tv-food-frame--kb1 .tv-food-img {
+            animation: kenBurns1 10s ease-in-out infinite alternate,
+                       tvImgShine 20s ease-in-out infinite 2s;
+        }
+        .tv-food-frame--kb2 .tv-food-img {
+            animation: kenBurns2 13s ease-in-out infinite alternate,
+                       tvImgShine 20s ease-in-out infinite 9s;
+        }
+        .tv-food-frame--kb3 .tv-food-img {
+            animation: kenBurns3 9s ease-in-out infinite alternate,
+                       tvImgShine 20s ease-in-out infinite 15s;
         }
 
         /* ── Dairy bar callout ── */
@@ -242,6 +278,21 @@
             border-radius: 4px;
         }
 
+        /* ── Special note variant (shimmer gold) ── */
+        .tv-note--special {
+            background: linear-gradient(90deg, #1a1200, #7a5000 35%, #f0b429 50%, #7a5000 65%, #1a1200 100%);
+            background-size: 200% auto;
+            animation: specialNoteShimmer 3.5s ease-in-out infinite alternate;
+            color: #fff8e0;
+            border-color: #f0b429;
+            font-size: 0.92rem;
+            letter-spacing: 0.06em;
+        }
+        @keyframes specialNoteShimmer {
+            from { background-position: left center; }
+            to   { background-position: right center; }
+        }
+
         /* ── Footer bar ── */
         .tv-footer {
             border-top: 1px solid #1a1a1a;
@@ -282,8 +333,10 @@
      ═══════════════════════════════════════════════════════ -->
 <section class="tv-screen active" id="screen1">
     <div class="tv-screen-header">
-        <h1>Nelly's Grill &amp; Dairy Bar</h1>
-        <p>West Pugwash, NS &nbsp;&#9679;&nbsp; (902) 243-2129 &nbsp;&#9679;&nbsp; Tue&ndash;Sun 11AM&ndash;7PM</p>
+        <div class="tv-screen-header-text">
+            <h1>Nelly's Grill &amp; Dairy Bar</h1>
+            <p>West Pugwash, NS &nbsp;&#9679;&nbsp; (902) 243-2129 &nbsp;&#9679;&nbsp; Tue&ndash;Sun 11AM&ndash;7PM</p>
+        </div>
     </div>
 
     <div class="menu-columns">
@@ -404,7 +457,8 @@
 
         <!-- SOUPS & SALADS -->
         <div>
-            <div class="cat-title">&#127858; Soups &amp; Salads</div>
+            <div class="tv-food-frame tv-food-frame--kb1" style="margin-top:0;"><img src="images/food/nellys-burger-actual.png" alt="Charbroiled burger at Nelly's" class="tv-food-img"></div>
+            <div class="cat-title" style="margin-top:0.6rem;">&#127858; Soups &amp; Salads</div>
             <div class="tv-item">
                 <div class="tv-item-left">
                     <div class="tv-item-name">Seafood Chowder</div>
@@ -427,8 +481,7 @@
                 <div class="tv-item-left"><div class="tv-item-name">Chicken Caesar Wrap / Salad</div></div>
                 <div class="tv-item-price">$18</div>
             </div>
-            <img src="images/food/nellys-burger-and-fries-actual.png" alt="Charbroiled burger and fries at Nelly's" class="tv-food-img">
-            <img src="images/food/nellys-chicken-wrap.png" alt="Chicken caesar wrap at Nelly's" class="tv-food-img" style="margin-top: 0.5rem;">
+            <div class="tv-food-frame tv-food-frame--kb2" style="margin-top:0.5rem;"><img src="images/food/nellys-chicken-wrap.png" alt="Chicken caesar wrap at Nelly's" class="tv-food-img"></div>
         </div>
 
     </div><!-- .menu-columns -->
@@ -449,8 +502,10 @@
      ═══════════════════════════════════════════════════════ -->
 <section class="tv-screen" id="screen2">
     <div class="tv-screen-header">
-        <h1>Nelly's Grill &amp; Dairy Bar</h1>
-        <p>West Pugwash, NS &nbsp;&#9679;&nbsp; (902) 243-2129 &nbsp;&#9679;&nbsp; Tue&ndash;Sun 11AM&ndash;7PM</p>
+        <div class="tv-screen-header-text">
+            <h1>Nelly's Grill &amp; Dairy Bar</h1>
+            <p>West Pugwash, NS &nbsp;&#9679;&nbsp; (902) 243-2129 &nbsp;&#9679;&nbsp; Tue&ndash;Sun 11AM&ndash;7PM</p>
+        </div>
     </div>
 
     <div class="menu-columns">
@@ -563,7 +618,7 @@
                 </tbody>
             </table>
             <div class="tv-note">Extra toppings +$2/$2.50/$3 &nbsp;|&nbsp; Extra cheese +$2/$4/$5 &nbsp;|&nbsp; Bacon +$2/$2.50/$3.50</div>
-            <img src="images/food/nellys-pizza-pepperoni.png" alt="Fresh pepperoni pizza at Nelly's" class="tv-food-img">
+            <div class="tv-food-frame tv-food-frame--kb3"><img src="images/food/nellys-pizza-pepperoni.png" alt="Fresh pepperoni pizza at Nelly's" class="tv-food-img"></div>
         </div>
 
         <!-- APPETIZERS & SNACKS -->
@@ -624,7 +679,7 @@
                 </div>
                 <div class="tv-item-price">$18</div>
             </div>
-            <img src="images/food/nellys-buffalo-wings.png" alt="Nelly's buffalo chicken wings" class="tv-food-img">
+            <div class="tv-food-frame tv-food-frame--kb1" style="margin-top:0.75rem; animation-delay:5s;"><img src="images/food/nellys-buffalo-wings.png" alt="Nelly's buffalo chicken wings" class="tv-food-img"></div>
         </div>
 
     </div><!-- .menu-columns -->
@@ -645,8 +700,10 @@
      ═══════════════════════════════════════════════════════ -->
 <section class="tv-screen" id="screen3">
     <div class="tv-screen-header">
-        <h1>Nelly's Grill &amp; Dairy Bar</h1>
-        <p>West Pugwash, NS &nbsp;&#9679;&nbsp; (902) 243-2129 &nbsp;&#9679;&nbsp; Tue&ndash;Sun 11AM&ndash;7PM</p>
+        <div class="tv-screen-header-text">
+            <h1>Nelly's Grill &amp; Dairy Bar</h1>
+            <p>West Pugwash, NS &nbsp;&#9679;&nbsp; (902) 243-2129 &nbsp;&#9679;&nbsp; Tue&ndash;Sun 11AM&ndash;7PM</p>
+        </div>
     </div>
 
     <div class="menu-columns">

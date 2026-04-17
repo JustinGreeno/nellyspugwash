@@ -102,6 +102,8 @@
             border-bottom: 3px double #cc0000;
             padding-bottom: 8px;
             margin-bottom: 10px;
+            padding-left: 120px;
+            padding-right: 120px;
         }
         .menu-header .diner-name {
             font-family: 'Playfair Display', serif;
@@ -148,17 +150,28 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin: 10px 0 5px;
+            margin: 12px 0 6px;
             break-after: avoid;
             page-break-after: avoid;
         }
         .section-head:first-child { margin-top: 0; }
+        .section-head::before {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, #cc0000 0px, #cc0000 5px, transparent 5px, transparent 9px);
+        }
         .section-head h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 800;
             color: #cc0000;
             white-space: nowrap;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            flex-shrink: 0;
+            text-shadow: 1px 1px 0 rgba(160,0,0,0.15);
         }
         .section-head .rule {
             flex: 1;
@@ -231,7 +244,7 @@
             width: 100%;
             max-height: 115px;
             object-fit: cover;
-            object-position: center top;
+            object-position: center center;
             border-radius: 5px;
             margin: 5px 0 8px;
             border: 1px solid #e0d0d0;
@@ -247,13 +260,18 @@
             margin: 0 0 6px 10px;
             shape-outside: margin-box;
         }
+        .db-img-wrap {
+            overflow: hidden;
+            width: 250px;
+            height: 108px;
+            margin: 4px auto 0;
+        }
         .db-img {
             display: block;
-            width: auto;
-            max-width: 250px;
-            max-height: 130px;
+            width: 250px;
+            height: 132px;
             object-fit: contain;
-            margin: 6px auto 0;
+            margin-top: -12px;
         }
         .clearfix::after { content: ''; display: block; clear: both; }
 
@@ -262,9 +280,17 @@
             position: absolute;
             top: 24px;
             left: 24px;
-            width: 54px;
+            width: 108px;
             height: auto;
-            opacity: 0.88;
+            opacity: 0.92;
+        }
+        .menu-logo-corner--right {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 108px;
+            height: auto;
+            opacity: 0.92;
         }
 
         /* ── Pizza price grid ── */
@@ -373,6 +399,40 @@
             color: #cc0000;
         }
 
+        /* ── Promo Ad box (bottom-left page 1) ── */
+        .nellys-promo-ad {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #fff8f8, #fff0f0);
+            border: 1.5px solid #cc0000;
+            border-radius: 5px;
+            padding: 7px 10px;
+            margin-top: 10px;
+        }
+        .nellys-promo-ad img {
+            width: 76px;
+            height: auto;
+            flex-shrink: 0;
+        }
+        .nellys-promo-ad-text {
+            flex: 1;
+        }
+        .nellys-promo-ad-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #cc0000;
+            line-height: 1.2;
+        }
+        .nellys-promo-ad-sub {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.65rem;
+            color: #555;
+            margin-top: 2px;
+            line-height: 1.5;
+        }
+
         /* ── Print-specific overrides ── */
         @media print {
             body { background: #fff; }
@@ -421,6 +481,7 @@
     <span class="corner corner--bl">&#10022;</span>
     <span class="corner corner--br">&#10022;</span>
     <img src="images/logos/Nelly Red and White.png" alt="Nelly's" class="menu-logo-corner">
+    <img src="images/logos/Nelly Red and White.png" alt="Nelly's" class="menu-logo-corner--right">
 
     <!-- Header -->
     <div class="menu-header">
@@ -433,9 +494,9 @@
 
         <!-- ── LEFT: From the Sea ── -->
         <div>
-            <div class="section-head"><h2>&#128031; From the Sea</h2><div class="rule"></div></div>
+            <div class="section-head"><h2>From the Sea</h2><div class="rule"></div></div>
 
-            <img src="images/food/nellys-haddock-and-chips.png" alt="Fresh Atlantic haddock and chips at Nelly's Grill" class="section-img">
+            <img src="images/food/nellys-lobster-roll-loaded.png" alt="Fresh Nova Scotia lobster roll at Nelly's Grill" class="section-img" style="object-position: center 40%;">
 
             <div class="item-row">
                 <div class="item-left"><div class="item-name">Haddock &amp; Fries (1 pc)</div><div class="item-desc">Golden battered Atlantic haddock with hand-cut fries</div></div>
@@ -478,7 +539,7 @@
             </div>
             <div class="note-box">Add Fries to any item: $5.00 &nbsp;|&nbsp; HST not included</div>
 
-            <div class="section-head"><h2>&#127858; Soups &amp; Salads</h2><div class="rule"></div></div>
+            <div class="section-head"><h2>Soups &amp; Salads</h2><div class="rule"></div></div>
 
             <img src="images/food/nellys-chicken-wrap.png" alt="Chicken caesar wrap at Nelly's Grill" class="section-img" style="max-height: 90px;">
 
@@ -494,11 +555,24 @@
                 <div class="item-left"><div class="item-name">Chicken Caesar Wrap / Salad</div><div class="item-desc">Grilled chicken with Caesar, wrapped or on greens</div></div>
                 <div class="item-price">$18.00</div>
             </div>
+
+            <!-- Promo Ad -->
+            <div class="nellys-promo-ad">
+                <img src="images/logos/Nelly Red and White.png" alt="Nelly's">
+                <div class="nellys-promo-ad-text">
+                    <div class="nellys-promo-ad-title">Nelly's Grill &amp; Dairy Bar</div>
+                    <div class="nellys-promo-ad-sub">
+                        Dog-Friendly Patio &nbsp;&#x1F43E;&nbsp; Takeout Welcome<br>
+                        Follow us &nbsp;@nellysgrillanddairybar<br>
+                        (902) 243-2129 &nbsp;&bull;&nbsp; West Pugwash, NS
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- ── RIGHT: Chicken + Burgers & Sandwiches ── -->
         <div>
-            <div class="section-head"><h2>&#127831; Southern Fried Chicken</h2><div class="rule"></div></div>
+            <div class="section-head"><h2>Southern Fried Chicken</h2><div class="rule"></div></div>
             <div class="section-note">Served with fries or mash &amp; coleslaw</div>
 
             <div class="clearfix">
@@ -526,11 +600,11 @@
             </div>
             </div><!-- end clearfix -->
 
-            <div class="section-head"><h2>&#127828; Burgers &amp; Sandwiches</h2><div class="rule"></div></div>
+            <div class="section-head"><h2>Burgers &amp; Sandwiches</h2><div class="rule"></div></div>
             <div class="section-note">Fresh local beef, charbroiled. Make any burger a platter +$5.00</div>
 
             <div class="sub-head">Burgers</div>
-            <img src="images/food/nellys-burger-and-fries-actual.png" alt="Charbroiled burger and fries at Nelly's Grill" class="section-img">
+            <img src="images/food/nellys-burger-actual.png" alt="Charbroiled burger at Nelly's Grill" class="section-img">
             <div class="item-row">
                 <div class="item-left"><div class="item-name">Classic Burger</div><div class="item-desc">Fresh local beef, charbroiled to perfection</div></div>
                 <div class="item-price">$9.00</div>
@@ -557,7 +631,7 @@
             </div>
 
             <div class="sub-head">Sandwiches &amp; Wraps</div>
-            <img src="images/food/nellys-club-sandwich-actual.png" alt="Club sandwich and fries at Nelly's Grill" class="section-img">
+            <img src="images/food/nellys-deli-sandwich-2.png" alt="Deli sandwich and fries at Nelly's Grill" class="section-img">
             <div class="item-row">
                 <div class="item-left"><div class="item-name">Club &amp; Fries</div><div class="item-desc">Classic triple-decker club sandwich</div></div>
                 <div class="item-price">$21.00</div>
@@ -589,10 +663,11 @@
     <span class="corner corner--tr">&#10022;</span>
     <span class="corner corner--bl">&#10022;</span>
     <span class="corner corner--br">&#10022;</span>
-    <img src="images/logos/Nelly Red and White.png" alt="Nelly's" class="menu-logo-corner">
+    <img src="images/logos/Nelly Red and White.png" alt="Nelly's" class="menu-logo-corner" style="width:46px;">
+    <img src="images/logos/Nelly Red and White.png" alt="Nelly's" class="menu-logo-corner--right" style="width:46px;">
 
     <!-- Mini header -->
-    <div class="menu-header menu-header--mini">
+    <div class="menu-header menu-header--mini" style="padding-left:58px; padding-right:58px;">
         <div class="diner-name">Nelly's Grill &amp; Dairy Bar</div>
         <div class="diner-sub">West Pugwash, Nova Scotia &nbsp;|&nbsp; (902) 243-2129</div>
     </div>
@@ -601,7 +676,7 @@
 
         <!-- ── LEFT: Pizza + Appetizers ── -->
         <div>
-            <div class="section-head"><h2>&#127829; Fresh Pizza</h2><div class="rule"></div></div>
+            <div class="section-head"><h2>Fresh Pizza</h2><div class="rule"></div></div>
 
             <img src="images/food/nellys-pizza-pepperoni.png" alt="Fresh pizza at Nelly's Grill" class="section-img">
 
@@ -642,9 +717,9 @@
             </table>
             <div class="note-box">Extra toppings +$2/$2.50/$3 &nbsp;|&nbsp; Extra cheese +$2/$4/$5 &nbsp;|&nbsp; Bacon +$2/$2.50/$3.50</div>
 
-            <div class="section-head"><h2>&#127839; Appetizers &amp; Snacks</h2><div class="rule"></div></div>
+            <div class="section-head"><h2>Appetizers &amp; Snacks</h2><div class="rule"></div></div>
 
-            <img src="images/food/nellys-clam-platter-actual.png" alt="Fresh clam platter at Nelly's Grill" class="section-img">
+            <img src="images/food/nellys-buffalo-wings.png" alt="Nelly's buffalo chicken wings" class="section-img">
 
             <div class="item-row">
                 <div class="item-left"><div class="item-name">1 lb Naked Chicken Wings</div><div class="item-desc">Crispy wings, naked or tossed in your choice of sauce</div></div>
@@ -690,7 +765,7 @@
 
         <!-- ── RIGHT: Kids + Dairy Bar + Desserts + Drinks ── -->
         <div>
-            <div class="section-head"><h2>&#128118; Kids Meals</h2><div class="rule"></div></div>
+            <div class="section-head"><h2>Kids Meals</h2><div class="rule"></div></div>
 
             <div class="item-row">
                 <div class="item-left"><div class="item-name">Grilled Cheese &amp; Fries</div></div>
@@ -715,12 +790,12 @@
 
             <!-- Dairy Bar callout -->
             <div class="dairy-bar-box">
-                <div class="db-title">&#127846; Visit Our Dairy Bar!</div>
+                <div class="db-title">Visit Our Dairy Bar!</div>
                 <div class="db-desc">Soft Serve &bull; Scoops &bull; Milkshakes &bull; Sundaes &bull; Banana Splits &bull; Flurries &bull; Floats</div>
-                <img src="images/logos/icecream logo.png" alt="Nelly's Dairy Bar Ice Cream" class="db-img">
+                <div class="db-img-wrap"><img src="images/logos/icecream logo.png" alt="Nelly's Dairy Bar Ice Cream" class="db-img"></div>
             </div>
 
-            <div class="section-head"><h2>&#127856; Desserts</h2><div class="rule"></div></div>
+            <div class="section-head"><h2>Desserts</h2><div class="rule"></div></div>
             <div class="item-row">
                 <div class="item-left"><div class="item-name">Cake or Pie of the Day</div><div class="item-desc">Ask your server for today's selection</div></div>
                 <div class="item-price">$5.50</div>
@@ -731,7 +806,7 @@
             </div>
             <div class="note-box">&#10024; Ask us about our desserts — changes daily!</div>
 
-            <div class="section-head"><h2>&#127861; Beverages</h2><div class="rule"></div></div>
+            <div class="section-head"><h2>Beverages</h2><div class="rule"></div></div>
             <div class="item-row">
                 <div class="item-left"><div class="item-name">Coffee / Tea</div></div>
                 <div class="item-price">$1.05</div>

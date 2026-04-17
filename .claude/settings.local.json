@@ -33,7 +33,8 @@
       "Bash(python3 -c \"from PIL import Image; print\\('Pillow OK'\\)\")",
       "Bash(pip install:*)",
       "Bash(python3 -m pip install Pillow --quiet)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Bash(start *)"
     ]
   }
 }

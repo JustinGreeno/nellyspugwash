@@ -109,7 +109,8 @@
 
                 <!-- Menu Tabs -->
                 <div class="menu-tabs" id="menu-tabs-row" aria-label="Menu categories">
-                    <button class="menu-tab active" data-tab="seafood">Seafood</button>
+                    <button class="menu-tab active" data-tab="all">All</button>
+                    <button class="menu-tab" data-tab="seafood">Seafood</button>
                     <button class="menu-tab" data-tab="chicken">Chicken</button>
                     <button class="menu-tab" data-tab="burgers">Burgers</button>
                     <button class="menu-tab" data-tab="pizza">Pizza</button>
@@ -189,7 +190,7 @@
                 </div>
 
                 <!-- Chicken -->
-                <div class="menu-section" id="chicken">
+                <div class="menu-section active" id="chicken">
                     <h3>🍗 Southern Fried Chicken</h3>
                     <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 1rem;">Served with fries or mash, potato & coleslaw</p>
 
@@ -237,7 +238,7 @@
                 </div>
 
                 <!-- Burgers & Sandwiches -->
-                <div class="menu-section" id="burgers">
+                <div class="menu-section active" id="burgers">
                     <h3>🍔 Burgers</h3>
                     <p style="font-size: 1rem; color: var(--text-muted); margin-bottom: 1rem;">Homemade, fresh local beef, charbroiled. Make any burger a platter for $5.00 extra.</p>
 
@@ -327,7 +328,7 @@
                 </div>
 
                 <!-- Pizza -->
-                <div class="menu-section" id="pizza">
+                <div class="menu-section active" id="pizza">
                     <h3>🍕 Fresh Pizza</h3>
                     <p style="font-size: 1rem; margin-bottom: 1rem;">Available in 9" / 12" / 16"</p>
 
@@ -339,50 +340,50 @@
                         <div class="menu-item-price">$12 / $18 / $17</div>
                     </div>
 
-                    <div class="menu-item" data-tags="beef">
+                    <div class="menu-item" data-tags="beef pizza">
                         <div>
-                            <div class="menu-item-name">Meatlovers</div>
-                            <div class="menu-item-desc">Pepperoni, bacon, salami, ground beef</div>
+                            <div class="menu-item-name">Meatlovers Pizza</div>
+                            <div class="menu-item-desc">Pepperoni, bacon, salami &amp; ground beef pizza</div>
                         </div>
                         <div class="menu-item-price">$14 / $21 / $26</div>
                     </div>
 
-                    <div class="menu-item" data-tags="beef">
+                    <div class="menu-item" data-tags="beef pizza">
                         <div>
-                            <div class="menu-item-name">Deluxe</div>
-                            <div class="menu-item-desc">Pepperoni, bacon, green pepper, mushroom, onion</div>
+                            <div class="menu-item-name">Deluxe Pizza</div>
+                            <div class="menu-item-desc">Pepperoni, bacon, green pepper, mushroom &amp; onion pizza</div>
                         </div>
                         <div class="menu-item-price">$14 / $19 / $25</div>
                     </div>
 
-                    <div class="menu-item" data-tags="beef">
+                    <div class="menu-item" data-tags="beef pizza">
                         <div>
-                            <div class="menu-item-name">Hawaiian</div>
-                            <div class="menu-item-desc">Ham, pineapple, green pepper</div>
+                            <div class="menu-item-name">Hawaiian Pizza</div>
+                            <div class="menu-item-desc">Ham, pineapple &amp; green pepper pizza</div>
                         </div>
                         <div class="menu-item-price">$14 / $21 / $26</div>
                     </div>
 
-                    <div class="menu-item" data-tags="vegetarian">
+                    <div class="menu-item" data-tags="vegetarian pizza">
                         <div>
-                            <div class="menu-item-name">Vegetarian</div>
-                            <div class="menu-item-desc">Tomato, onion, green pepper, mushroom, olive</div>
+                            <div class="menu-item-name">Vegetarian Pizza</div>
+                            <div class="menu-item-desc">Tomato, onion, green pepper, mushroom &amp; olive pizza</div>
                         </div>
                         <div class="menu-item-price">$13 / $21 / $26</div>
                     </div>
 
-                    <div class="menu-item" data-tags="beef">
+                    <div class="menu-item" data-tags="beef pizza donair">
                         <div>
                             <div class="menu-item-name">Donair Pizza</div>
-                            <div class="menu-item-desc">East coast classic. Donair meat with sweet sauce.</div>
+                            <div class="menu-item-desc">East coast classic donair pizza with sweet sauce</div>
                         </div>
                         <div class="menu-item-price">~$22 / ~$28 / ~$34</div>
                     </div>
 
-                    <div class="menu-item" data-tags="vegetarian">
+                    <div class="menu-item" data-tags="vegetarian pizza garlic">
                         <div>
                             <div class="menu-item-name">Garlic Fingers</div>
-                            <div class="menu-item-desc">Cheesy garlic goodness</div>
+                            <div class="menu-item-desc">Cheesy garlic pizza fingers — a Maritime classic!</div>
                         </div>
                         <div class="menu-item-price">$9 / $14 / $18</div>
                     </div>
@@ -391,7 +392,7 @@
                 </div>
 
                 <!-- Snacks -->
-                <div class="menu-section" id="snacks">
+                <div class="menu-section active" id="snacks">
                     <h3>🍟 Snacks & Stuff</h3>
 
                     <div class="menu-item" data-tags="chicken spicy">
@@ -462,7 +463,7 @@
                 </div>
 
                 <!-- More -->
-                <div class="menu-section" id="more">
+                <div class="menu-section active" id="more">
                     <h3>🍲 Soups & Salads</h3>
 
                     <div class="menu-item" data-tags="fish">
@@ -640,7 +641,17 @@
         const tabs = document.querySelectorAll('.menu-tab');
         const sections = document.querySelectorAll('.menu-section');
 
+        function showAllSections() {
+            tabs.forEach(t => t.classList.remove('active'));
+            document.querySelector('.menu-tab[data-tab="all"]').classList.add('active');
+            sections.forEach(s => s.classList.add('active'));
+        }
+
         function activateTab(targetId) {
+            if (targetId === 'all') {
+                showAllSections();
+                return;
+            }
             tabs.forEach(t => t.classList.remove('active'));
             sections.forEach(s => s.classList.remove('active'));
             const tab = document.querySelector(`.menu-tab[data-tab="${targetId}"]`);
@@ -664,6 +675,7 @@
 
         function clearSearch() {
             sections.forEach(s => {
+                s.classList.add('active');
                 s.querySelectorAll('.menu-item').forEach(item => {
                     item.style.display = '';
                 });
@@ -671,6 +683,9 @@
             });
             noResults.style.display = 'none';
             tabsRow.style.display = '';
+            tabs.forEach(t => t.classList.remove('active'));
+            const allTab = document.querySelector('.menu-tab[data-tab="all"]');
+            if (allTab) allTab.classList.add('active');
         }
 
         menuSearchInput.addEventListener('input', function () {
@@ -678,7 +693,7 @@
 
             if (!query) {
                 clearSearch();
-                activateTab('seafood');
+                showAllSections();
                 return;
             }
 
